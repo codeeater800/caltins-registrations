@@ -30,6 +30,33 @@ app.get("/event-registrations.json", (req, res) => {
   });
 });
 
+// Route to view the registration data in the browser
+app.get("/admin/registrations", (req, res) => {
+  fs.readFile(jsonFilePath, "utf8", (err, data) => {
+    if (err) {
+      return res.status(500).send("Error reading registrations.");
+    }
+    res.send(`
+      <html>
+      <head><title>Registrations</title></head>
+      <body>
+      <h1>Event Registrations</h1>
+      <pre>${data}</pre>
+      </body>
+      </html>
+    `);
+  });
+});
+
+// Route to download the JSON file
+app.get("/admin/download-registrations", (req, res) => {
+  res.download(jsonFilePath, "event-registrations.json", (err) => {
+    if (err) {
+      res.status(500).send("Error downloading file.");
+    }
+  });
+});
+
 // Endpoint to handle form submission and save data to the JSON file
 app.post("/register", (req, res) => {
   const newRegistration = req.body;
