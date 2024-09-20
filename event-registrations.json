@@ -1,0 +1,77 @@
+[
+  {
+    "childName": "Walter White",
+    "parentName": "Jonathan White",
+    "age": "2024-09-19",
+    "school": "St Nirmala's High School",
+    "grade": "2",
+    "rollNo": "21",
+    "phoneNo": "5566277882",
+    "email": "walter@gmail.com"
+  },
+  {
+    "childName": "Huell",
+    "parentName": "Baggins",
+    "age": "2024-09-19",
+    "school": "St Paul's High School",
+    "grade": "5",
+    "rollNo": "2",
+    "phoneNo": "6672199281",
+    "email": "huell.b@gmail.com"
+  },
+  {
+    "childName": "Saul Goodman",
+    "parentName": "John Goodman",
+    "age": "2018-04-18",
+    "school": "St Paul's High School",
+    "grade": "2",
+    "rollNo": "21",
+    "phoneNo": "6678966789",
+    "email": "saul@gmail.com",
+    "registrationID": "PHSCAT1_0001"
+  },
+  {
+    "childName": "Saul Goodmans",
+    "parentName": "John Goodman",
+    "age": "2018-04-18",
+    "school": "St Paul's High School",
+    "grade": "2",
+    "rollNo": "21",
+    "phoneNo": "7727299282",
+    "email": "sa2ul@gmail.com",
+    "registrationID": "PHSCAT1_0002"
+  },
+  {
+    "childName": "Gustavo Fring",
+    "parentName": "Aegis Fring",
+    "age": "2016-02-02",
+    "school": "St Josephs Indian High School",
+    "grade": "5",
+    "rollNo": "88",
+    "phoneNo": "9880302219",
+    "email": "gus@lph.com",
+    "registrationID": "SJICAT1_0003"
+  },
+  {
+    "childName": "Joe",
+    "parentName": "Jeremy",
+    "age": "2018-09-20",
+    "school": "Cluny Convent High School",
+    "grade": "2",
+    "rollNo": "21",
+    "phoneNo": "9999988888",
+    "email": "joe.jeremy@gmail.com",
+    "registrationID": "CCSCAT1_0004"
+  },
+  {
+    "childName": "Barack Obama",
+    "parentName": "Dwayne Obama",
+    "age": "2019-02-02",
+    "school": "St Francis High School",
+    "grade": "2",
+    "rollNo": "21",
+    "phoneNo": "9988799887",
+    "email": "obama@wh.com",
+    "registrationID": "SFXCAT1_0005"
+  }
+]

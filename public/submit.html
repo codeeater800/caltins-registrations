@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title>Submit Image</title>
+    <style>
+      /* Basic styles */
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f4f4f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 400px;
+        padding: 20px;
+        text-align: center;
+      }
+
+      h1 {
+        color: #2980b9;
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      label {
+        font-size: 14px;
+        color: #333;
+        text-align: left;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input[type="text"],
+      input[type="file"] {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+
+      input[type="submit"] {
+        background-color: #2980b9;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #21618c;
+      }
+
+      #message {
+        margin-top: 15px;
+        color: red;
+        font-size: 14px;
+      }
+
+      #uploadForm {
+        display: none;
+      }
+
+      #childNameDisplay {
+        margin-top: 20px;
+        font-size: 16px;
+        font-weight: bold;
+        color: green;
+      }
+    </style>
+    <script>
+      function checkRegistrationID(event) {
+        event.preventDefault();
+        const registrationID = document.getElementById("registrationID").value;
+
+        // Fetch the event-registrations.json file from the server
+        fetch("/event-registrations.json")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            // Check if the registrationID exists in the event-registrations.json data
+            const registration = data.find(
+              (entry) => entry.registrationID === registrationID
+            );
+            if (registration) {
+              document.getElementById("uploadForm").style.display = "block";
+              document.getElementById("message").textContent = "";
+
+              // Display the child's name after the registration ID is found
+              document.getElementById(
+                "childNameDisplay"
+              ).textContent = `Child's Name: ${registration.childName}`;
+            } else {
+              document.getElementById("uploadForm").style.display = "none";
+              document.getElementById("message").textContent =
+                "Registration not found, contact admin";
+              document.getElementById("childNameDisplay").textContent = ""; // Clear any previous child's name
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching registrations:", error);
+            document.getElementById("message").textContent =
+              "Error fetching registrations. Please try again later.";
+          });
+      }
+
+      function submitImage(event) {
+        event.preventDefault();
+        alert("Image submitted successfully!");
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Submit Image</h1>
+      <form onsubmit="checkRegistrationID(event)">
+        <label for="registrationID">Enter Registration ID:</label>
+        <input type="text" id="registrationID" name="registrationID" required />
+        <input type="submit" value="Check Registration ID" />
+      </form>
+
+      <p id="message"></p>
+      <div id="childNameDisplay"></div>
+      <!-- Display child's name here -->
+
+      <div id="uploadForm">
+        <h3>Upload Image</h3>
+        <form onsubmit="submitImage(event)">
+          <label for="image">Select image:</label>
+          <input
+            type="file"
+            id="image"
+            name="image"
+            accept="image/*"
+            required
+          /><br /><br />
+          <input type="submit" value="Submit Image" />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
