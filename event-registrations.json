@@ -128,5 +128,27 @@
     "phoneNo": "1000010000",
     "email": "ching@chong.com",
     "registrationID": "NHSCAT1_0009"
+  },
+  {
+    "childName": "bajoong",
+    "parentName": "bijoong",
+    "age": "2015-02-02",
+    "school": "St Paul's High School",
+    "grade": "2",
+    "rollNo": "21",
+    "phoneNo": "9129191291",
+    "email": "ngn@gmail.com",
+    "registrationID": "PHSCAT2_0001"
+  },
+  {
+    "childName": "jing",
+    "parentName": "jong",
+    "age": "2018-02-02",
+    "school": "Clarence High School",
+    "grade": "2",
+    "rollNo": "2",
+    "phoneNo": "9999899998",
+    "email": "jong@jing.cmo",
+    "registrationID": "CHSCAT1_0010"
   }
 ]
