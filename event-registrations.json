@@ -150,5 +150,16 @@
     "phoneNo": "9999899998",
     "email": "jong@jing.cmo",
     "registrationID": "CHSCAT1_0010"
+  },
+  {
+    "childName": "boy",
+    "parentName": "boy2",
+    "age": "2016-02-12",
+    "school": "Florence High School",
+    "grade": "2",
+    "rollNo": "2",
+    "phoneNo": "8776688787",
+    "email": "sadih@gd.com",
+    "registrationID": "FHSCAT1_0011"
   }
 ]

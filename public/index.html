@@ -154,6 +154,25 @@
         }
       }
 
+      function displayAge() {
+        const birthDate = new Date(document.getElementById("age").value);
+        const today = new Date();
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDifference = today.getMonth() - birthDate.getMonth();
+        if (
+          monthDifference < 0 ||
+          (monthDifference === 0 && today.getDate() < birthDate.getDate())
+        ) {
+          age--;
+        }
+
+        if (!isNaN(age)) {
+          document.getElementById("calculatedAge").value = age; // Display calculated age
+        } else {
+          document.getElementById("calculatedAge").value = ""; // Clear if invalid date
+        }
+      }
+
       // Function to calculate age from date of birth
       function calculateAge(dateOfBirth) {
         const birthDate = new Date(dateOfBirth);
@@ -212,8 +231,24 @@
         <label for="parentName">Parent's Name:</label>
         <input type="text" id="parentName" name="parentName" required />
 
-        <label for="age">Age of Child:</label>
-        <input type="date" id="age" name="age" required />
+        <label for="age">Date of Birth:</label>
+        <div style="display: flex; align-items: center">
+          <input
+            type="date"
+            id="age"
+            name="age"
+            required
+            style="width: 70%"
+            oninput="displayAge()"
+          />
+          <input
+            type="text"
+            id="calculatedAge"
+            readonly
+            placeholder="Age"
+            style="width: 20%; margin-left: 10px"
+          />
+        </div>
 
         <label for="school">School:</label>
         <select id="school" name="school" required>
