@@ -110,11 +110,20 @@
           age: document.getElementById("age").value,
           school: document.getElementById("school").value,
           grade: document.getElementById("grade").value,
-          section: document.getElementById("section").value || "", // Default to an empty string if left blank
+          section: document.getElementById("section").value.toUpperCase() || "", // Convert section to uppercase
           rollNo: document.getElementById("rollNo").value,
           phoneNo: document.getElementById("phoneNo").value,
           email: document.getElementById("email").value,
         };
+
+        // Validate age
+        const childAge = calculateAge(formData.age);
+        if (childAge < 5 || childAge > 16) {
+          alert(
+            "Age not within the valid range of 5 to 16 years. Please re-enter."
+          );
+          return; // Prevent form submission if age is invalid
+        }
 
         const confirmationText = `Child's Name: ${formData.childName}\nParent's Name: ${formData.parentName}\nAge: ${formData.age}\nSchool: ${formData.school}\nGrade: ${formData.grade}\nSection: ${formData.section}\nRoll No: ${formData.rollNo}\nPhone No: ${formData.phoneNo}\nEmail ID: ${formData.email}`;
 
@@ -135,8 +144,7 @@
               "Oops! It looks like this child has already been registered previously."
             ) {
               alert(result);
-              // Clear the form and let the user try again
-              document.querySelector("form").reset();
+              document.querySelector("form").reset(); // Clear the form and let the user try again
               return; // Do not redirect, stay on the form page
             } else {
               alert(result);
