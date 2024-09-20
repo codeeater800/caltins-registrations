@@ -73,5 +73,60 @@
     "phoneNo": "9988799887",
     "email": "obama@wh.com",
     "registrationID": "SFXCAT1_0005"
+  },
+  {
+    "childName": "jonathan",
+    "parentName": "jeremy",
+    "age": "2019-02-02",
+    "school": "Cluny Convent High School",
+    "grade": "2",
+    "rollNo": "12",
+    "phoneNo": "9880304495",
+    "email": "jon@gmail.com",
+    "registrationID": "CCSCAT1_0006"
+  },
+  {
+    "childName": "jeremy",
+    "parentName": "john",
+    "age": "2019-02-02",
+    "school": "St John's",
+    "grade": "2",
+    "rollNo": "02",
+    "phoneNo": "9880394495",
+    "email": "bing@gmail.com",
+    "registrationID": "SJSCAT1_0007"
+  },
+  {
+    "childName": "jing",
+    "parentName": "jong",
+    "age": "2009-02-02",
+    "school": "Florence High School",
+    "grade": "2",
+    "rollNo": "21",
+    "phoneNo": "9880309912",
+    "email": "j@gmail.com",
+    "registrationID": "FHSCAT3_0001"
+  },
+  {
+    "childName": "bing",
+    "parentName": "bong",
+    "age": "2018-02-02",
+    "school": "BMS High School",
+    "grade": "2",
+    "rollNo": "2",
+    "phoneNo": "7766655666",
+    "email": "bing@bong.com",
+    "registrationID": "BMSCAT1_0008"
+  },
+  {
+    "childName": "ching",
+    "parentName": "chong",
+    "age": "2017-02-02",
+    "school": "St Nirmala's High School",
+    "grade": "2",
+    "rollNo": "2",
+    "phoneNo": "1000010000",
+    "email": "ching@chong.com",
+    "registrationID": "NHSCAT1_0009"
   }
 ]

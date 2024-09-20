@@ -69,6 +69,36 @@
       form {
         text-align: left;
       }
+
+      #thankYouContainer {
+        display: none;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 400px;
+        padding: 20px;
+        text-align: center;
+      }
+
+      #thankYouContainer h2 {
+        color: #2980b9;
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      #thankYouContainer p {
+        font-size: 14px;
+        color: #333;
+      }
+
+      #thankYouContainer a {
+        color: #2980b9;
+        text-decoration: none;
+      }
+
+      #thankYouContainer a:hover {
+        text-decoration: underline;
+      }
     </style>
     <script>
       async function confirmData(event) {
@@ -84,6 +114,15 @@
           phoneNo: document.getElementById("phoneNo").value,
           email: document.getElementById("email").value,
         };
+
+        // Client-side validation for age before proceeding
+        const childAge = calculateAge(formData.age);
+        if (childAge < 5 || childAge > 16) {
+          alert(
+            "Age not within the valid range of 5 to 16 years. Please re-enter."
+          );
+          return; // Prevent form submission if age is invalid
+        }
 
         const confirmationText = `Child's Name: ${formData.childName}\nParent's Name: ${formData.parentName}\nAge: ${formData.age}\nSchool: ${formData.school}\nGrade: ${formData.grade}\nRoll No: ${formData.rollNo}\nPhone No: ${formData.phoneNo}\nEmail ID: ${formData.email}`;
 
@@ -106,12 +145,28 @@
               window.location.reload(); // Reload the page to reset the form
             } else {
               alert(result);
+              showThankYouMessage();
               localStorage.clear(); // Clear localStorage on successful submission
             }
           } catch (error) {
             alert("Error submitting form.");
           }
         }
+      }
+
+      // Function to calculate age from date of birth
+      function calculateAge(dateOfBirth) {
+        const birthDate = new Date(dateOfBirth);
+        const today = new Date();
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDifference = today.getMonth() - birthDate.getMonth();
+        if (
+          monthDifference < 0 ||
+          (monthDifference === 0 && today.getDate() < birthDate.getDate())
+        ) {
+          age--;
+        }
+        return age;
       }
 
       // On page load, refill all data except phone number
@@ -129,6 +184,11 @@
           localStorage.removeItem("formData"); // Clear after refilling
         }
       };
+
+      function showThankYouMessage() {
+        document.querySelector(".container").style.display = "none"; // Hide the registration form
+        document.getElementById("thankYouContainer").style.display = "block"; // Show the thank you message
+      }
     </script>
   </head>
   <body>
@@ -211,6 +271,12 @@
 
         <input type="submit" value="Submit" />
       </form>
+    </div>
+
+    <div id="thankYouContainer">
+      <h2>Thank you for registering!</h2>
+      <p>We'll stay in touch. The submission portal will open soon.</p>
+      <p><a href="#">Register for another child</a></p>
     </div>
   </body>
 </html>
