@@ -80,7 +80,6 @@ app.post("/register", (req, res) => {
     try {
       registrations = JSON.parse(data); // Try parsing the file's contents
     } catch (parseError) {
-      // If parsing fails, re-initialize as an empty array
       registrations = [];
     }
 
@@ -94,14 +93,21 @@ app.post("/register", (req, res) => {
     // Add the registration ID to the new registration object
     newRegistration.registrationID = registrationID;
 
-    // Check for duplicate phone or email
+    // Check for duplicate based on school, grade, section, and roll number
     const duplicateEntry = registrations.find(
       (reg) =>
-        reg.phoneNo === newRegistration.phoneNo ||
-        reg.email === newRegistration.email
+        reg.school === newRegistration.school &&
+        reg.grade === newRegistration.grade &&
+        reg.section === newRegistration.section && // Handle empty section gracefully
+        reg.rollNo === newRegistration.rollNo
     );
+
     if (duplicateEntry) {
-      return res.status(400).send("Mobile number already used to register.");
+      return res
+        .status(400)
+        .send(
+          "Oops! It looks like this child has already been registered previously."
+        );
     }
 
     // Add the new registration to the existing registrations

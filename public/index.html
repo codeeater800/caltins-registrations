@@ -110,21 +110,13 @@
           age: document.getElementById("age").value,
           school: document.getElementById("school").value,
           grade: document.getElementById("grade").value,
+          section: document.getElementById("section").value || "", // Default to an empty string if left blank
           rollNo: document.getElementById("rollNo").value,
           phoneNo: document.getElementById("phoneNo").value,
           email: document.getElementById("email").value,
         };
 
-        // Client-side validation for age before proceeding
-        const childAge = calculateAge(formData.age);
-        if (childAge < 5 || childAge > 16) {
-          alert(
-            "Age not within the valid range of 5 to 16 years. Please re-enter."
-          );
-          return; // Prevent form submission if age is invalid
-        }
-
-        const confirmationText = `Child's Name: ${formData.childName}\nParent's Name: ${formData.parentName}\nAge: ${formData.age}\nSchool: ${formData.school}\nGrade: ${formData.grade}\nRoll No: ${formData.rollNo}\nPhone No: ${formData.phoneNo}\nEmail ID: ${formData.email}`;
+        const confirmationText = `Child's Name: ${formData.childName}\nParent's Name: ${formData.parentName}\nAge: ${formData.age}\nSchool: ${formData.school}\nGrade: ${formData.grade}\nSection: ${formData.section}\nRoll No: ${formData.rollNo}\nPhone No: ${formData.phoneNo}\nEmail ID: ${formData.email}`;
 
         if (confirm(confirmationText)) {
           try {
@@ -138,14 +130,17 @@
 
             const result = await response.text();
 
-            if (result === "Mobile number already used to register.") {
+            if (
+              result ===
+              "Oops! It looks like this child has already been registered previously."
+            ) {
               alert(result);
-              // Clear phone number only and refill other fields
-              localStorage.setItem("formData", JSON.stringify(formData));
-              window.location.reload(); // Reload the page to reset the form
+              // Clear the form and let the user try again
+              document.querySelector("form").reset();
+              return; // Do not redirect, stay on the form page
             } else {
               alert(result);
-              showThankYouMessage();
+              showThankYouMessage(); // Redirect to thank you page only on successful registration
               localStorage.clear(); // Clear localStorage on successful submission
             }
           } catch (error) {
@@ -198,6 +193,7 @@
           document.getElementById("age").value = savedFormData.age;
           document.getElementById("school").value = savedFormData.school;
           document.getElementById("grade").value = savedFormData.grade;
+          document.getElementById("section").value = savedFormData.section;
           document.getElementById("rollNo").value = savedFormData.rollNo;
           document.getElementById("email").value = savedFormData.email;
           localStorage.removeItem("formData"); // Clear after refilling
@@ -298,7 +294,23 @@
         </select>
 
         <label for="grade">Grade:</label>
-        <input type="text" id="grade" name="grade" required />
+        <div style="display: flex; align-items: center">
+          <input
+            type="text"
+            id="grade"
+            name="grade"
+            required
+            style="width: 45%"
+            placeholder="Grade"
+          />
+          <input
+            type="text"
+            id="section"
+            name="section"
+            style="width: 45%; margin-left: 10px"
+            placeholder="Section (optional)"
+          />
+        </div>
 
         <label for="rollNo">Roll No:</label>
         <input type="text" id="rollNo" name="rollNo" required />

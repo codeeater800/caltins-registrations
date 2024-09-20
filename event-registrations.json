@@ -161,5 +161,53 @@
     "phoneNo": "8776688787",
     "email": "sadih@gd.com",
     "registrationID": "FHSCAT1_0011"
+  },
+  {
+    "childName": "bang",
+    "parentName": "bang",
+    "age": "2018-01-01",
+    "school": "St Anthony's High School",
+    "grade": "2",
+    "section": "A",
+    "rollNo": "22",
+    "phoneNo": "8876788767",
+    "email": "bang@bong.com",
+    "registrationID": "AHSCAT1_0012"
+  },
+  {
+    "childName": "bagang",
+    "parentName": "bogong",
+    "age": "2013-02-02",
+    "school": "Florence High School",
+    "grade": "2",
+    "section": "B",
+    "rollNo": "122",
+    "phoneNo": "7768699898",
+    "email": "iasdj@gmail.com",
+    "registrationID": "FHSCAT2_0002"
+  },
+  {
+    "childName": "jaja",
+    "parentName": "haha",
+    "age": "2014-02-02",
+    "school": "St Charles High School",
+    "grade": "1",
+    "section": "A",
+    "rollNo": "1",
+    "phoneNo": "8888888888",
+    "email": "haha@gmail.com",
+    "registrationID": "SCHCAT2_0003"
+  },
+  {
+    "childName": "saddsa",
+    "parentName": "sdas",
+    "age": "2019-02-01",
+    "school": "Florence High School",
+    "grade": "2",
+    "section": "B",
+    "rollNo": "121",
+    "phoneNo": "1234567899",
+    "email": "ooo@gmail.com",
+    "registrationID": "FHSCAT1_0013"
   }
 ]
