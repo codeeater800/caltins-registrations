@@ -98,12 +98,37 @@
             });
 
             const result = await response.text();
-            alert(result);
+
+            if (result === "Mobile number already used to register.") {
+              alert(result);
+              // Clear phone number only and refill other fields
+              localStorage.setItem("formData", JSON.stringify(formData));
+              window.location.reload(); // Reload the page to reset the form
+            } else {
+              alert(result);
+              localStorage.clear(); // Clear localStorage on successful submission
+            }
           } catch (error) {
             alert("Error submitting form.");
           }
         }
       }
+
+      // On page load, refill all data except phone number
+      window.onload = () => {
+        const savedFormData = JSON.parse(localStorage.getItem("formData"));
+        if (savedFormData) {
+          document.getElementById("childName").value = savedFormData.childName;
+          document.getElementById("parentName").value =
+            savedFormData.parentName;
+          document.getElementById("age").value = savedFormData.age;
+          document.getElementById("school").value = savedFormData.school;
+          document.getElementById("grade").value = savedFormData.grade;
+          document.getElementById("rollNo").value = savedFormData.rollNo;
+          document.getElementById("email").value = savedFormData.email;
+          localStorage.removeItem("formData"); // Clear after refilling
+        }
+      };
     </script>
   </head>
   <body>
