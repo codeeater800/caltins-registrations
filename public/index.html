@@ -101,22 +101,20 @@
       }
     </style>
     <script>
-      let isReturningUser = false;
-
       async function confirmData(event) {
         event.preventDefault(); // Prevent form submission
 
         const formData = {
           childName: document.getElementById("childName").value,
           parentName: document.getElementById("parentName").value,
-          age: document.getElementById("age").value,
+          dateOfBirth: document.getElementById("dateOfBirth").value, // Renamed field
           educationBoard: document.getElementById("educationBoard").value,
           phoneNo: document.getElementById("phoneNo").value,
           email: document.getElementById("email").value,
         };
 
         // Validate age
-        const childAge = calculateAge(formData.age);
+        const childAge = calculateAge(formData.dateOfBirth); // Correctly calculates age from date of birth
         if (childAge < 5 || childAge > 16) {
           alert(
             "Age not within the valid range of 5 to 16 years. Please re-enter."
@@ -124,7 +122,7 @@
           return; // Prevent form submission if age is invalid
         }
 
-        const confirmationText = `Child's Name: ${formData.childName}\nParent's Name: ${formData.parentName}\nAge: ${formData.age}\nEducation Board: ${formData.educationBoard}\nPhone No: ${formData.phoneNo}\nEmail ID: ${formData.email}`;
+        const confirmationText = `Child's Name: ${formData.childName}\nParent's Name: ${formData.parentName}\nDate of Birth: ${formData.dateOfBirth}\nEducation Board: ${formData.educationBoard}\nPhone No: ${formData.phoneNo}\nEmail ID: ${formData.email}`;
 
         if (confirm(confirmationText)) {
           try {
@@ -142,20 +140,9 @@
               result ===
               "Oops! It looks like this phone number has already been registered previously."
             ) {
-              // Allow up to 3 registrations for the same phone number
-              alert(
-                "Mobile number was previously used to register. If you wish to register for another child with the same number, please proceed."
-              );
-              isReturningUser = true; // Track the returning user state
-              document.querySelector("form").reset(); // Clear the form except for phone number
-              retainFormData(formData); // Retain all fields except phone number
-              document.getElementById("phoneNo").focus(); // Focus on phone number field
-            } else if (
-              result === "Maximum registrations exceeded for this number."
-            ) {
-              alert(result); // Show max registration limit reached message
-              document.getElementById("phoneNo").value = ""; // Clear phone number field
-              document.getElementById("phoneNo").focus(); // Focus on phone number field
+              alert(result);
+              document.querySelector("form").reset(); // Clear the form and let the user try again
+              return; // Do not redirect, stay on the form page
             } else {
               alert(result);
               showThankYouMessage(); // Redirect to thank you page only on successful registration
@@ -167,20 +154,10 @@
         }
       }
 
-      function retainFormData(savedFormData) {
-        if (isReturningUser) {
-          document.getElementById("childName").value = savedFormData.childName;
-          document.getElementById("parentName").value =
-            savedFormData.parentName;
-          document.getElementById("age").value = savedFormData.age;
-          document.getElementById("educationBoard").value =
-            savedFormData.educationBoard;
-          document.getElementById("email").value = savedFormData.email;
-        }
-      }
-
       function displayAge() {
-        const birthDate = new Date(document.getElementById("age").value);
+        const birthDate = new Date(
+          document.getElementById("dateOfBirth").value
+        ); // Updated field name
         const today = new Date();
         let age = today.getFullYear() - birthDate.getFullYear();
         const monthDifference = today.getMonth() - birthDate.getMonth();
@@ -240,12 +217,13 @@
         <label for="parentName">Parent's Name:</label>
         <input type="text" id="parentName" name="parentName" required />
 
-        <label for="age">Date of Birth:</label>
+        <label for="dateOfBirth">Date of Birth:</label>
+        <!-- Updated field name -->
         <div style="display: flex; align-items: center">
           <input
             type="date"
-            id="age"
-            name="age"
+            id="dateOfBirth"
+            name="dateOfBirth"
             required
             style="width: 70%"
             oninput="displayAge()"

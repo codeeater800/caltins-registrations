@@ -1,116 +1,182 @@
 [
   {
-    "childName": "test1",
-    "parentName": "test1",
-    "age": "2018-02-02",
-    "school": "St Charles High School",
-    "grade": "1",
-    "section": "A",
-    "rollNo": "1",
-    "phoneNo": "9898989898",
-    "email": "test@gmail.com",
-    "registrationID": "SCHCAT1_0001"
-  },
-  {
-    "childName": "test2",
-    "parentName": "test2",
-    "age": "2019-02-02",
-    "school": "St Nirmala's High School",
-    "grade": "1",
-    "section": "A",
-    "rollNo": "1",
-    "phoneNo": "9898989899",
-    "email": "test@gmail.com",
-    "registrationID": "NHSCAT1_0002"
-  },
-  {
-    "childName": "test1",
-    "parentName": "test2",
-    "age": "2019-02-02",
-    "educationBoard": "SSLC",
-    "phoneNo": "8888999998",
-    "email": "test@gmail.com",
-    "registrationID": "SSLC_GRP_A_0001"
-  },
-  {
-    "childName": "test2",
-    "parentName": "test2",
-    "age": "2018-02-02",
+    "childName": "Diya",
+    "parentName": "Lakshmi",
+    "dateOfBirth": "2018-09-28",
     "educationBoard": "ICSE",
-    "phoneNo": "9999888889",
-    "email": "test@gmail.com",
+    "phoneNo": "2000000000",
+    "email": "1@outlook.com",
     "registrationID": "ICSE_GRP_A_0001"
   },
   {
-    "childName": "s",
-    "parentName": "s",
-    "age": "2017-02-02",
-    "educationBoard": "SSLC",
-    "phoneNo": "8888999990",
-    "email": "f@gmail.com",
-    "registrationID": "SSLC_GRP_A_0002"
-  },
-  {
-    "childName": "bing",
-    "parentName": "bong",
-    "age": "2012-02-02",
-    "educationBoard": "SSLC",
-    "phoneNo": "8888999998",
-    "email": "test@gmail.com",
-    "registrationID": "SSLC_GRP_B_0003"
-  },
-  {
-    "childName": "7",
-    "parentName": "6",
-    "age": "2014-02-02",
-    "educationBoard": "SSLC",
-    "phoneNo": "8888999998",
-    "email": "h@gmail.com",
-    "registrationID": "SSLC_GRP_B_0004"
-  },
-  {
-    "childName": "7",
-    "parentName": "7",
-    "age": "2018-02-02",
-    "educationBoard": "SSLC",
-    "phoneNo": "8888999990",
-    "email": "3@gmail.com",
-    "registrationID": "SSLC_GRP_A_0005"
-  },
-  {
-    "childName": "ding",
-    "parentName": "dong",
-    "age": "2016-02-02",
+    "childName": "Aditya",
+    "parentName": "Priya",
+    "dateOfBirth": "2016-03-08",
     "educationBoard": "ICSE",
-    "phoneNo": "8888999990",
-    "email": "2@gmail.com",
+    "phoneNo": "2000000001",
+    "email": "2@outlook.com",
     "registrationID": "ICSE_GRP_A_0002"
   },
   {
-    "childName": "2",
-    "parentName": "22",
-    "age": "2016-02-02",
+    "childName": "Aarav",
+    "parentName": "Priya",
+    "dateOfBirth": "2011-02-27",
+    "educationBoard": "OPPR",
+    "phoneNo": "2000000011",
+    "email": "3@yahoo.com",
+    "registrationID": "OPPR_GRP_C_0003"
+  },
+  {
+    "childName": "Diya",
+    "parentName": "Kiran",
+    "dateOfBirth": "2012-09-19",
     "educationBoard": "SSLC",
-    "phoneNo": "8888999999",
-    "email": "2@gmail.com",
+    "phoneNo": "2000000016",
+    "email": "4@outlook.com",
+    "registrationID": "SSLC_GRP_B_0004"
+  },
+  {
+    "childName": "Vihaan",
+    "parentName": "Anjali",
+    "dateOfBirth": "2012-10-19",
+    "educationBoard": "SSLC",
+    "phoneNo": "2000000021",
+    "email": "5@gmail.com",
+    "registrationID": "SSLC_GRP_B_0005"
+  },
+  {
+    "childName": "Diya",
+    "parentName": "Suresh",
+    "dateOfBirth": "2016-12-14",
+    "educationBoard": "SSLC",
+    "phoneNo": "2000000026",
+    "email": "6@gmail.com",
     "registrationID": "SSLC_GRP_A_0006"
   },
   {
-    "childName": "ding",
-    "parentName": "dong",
-    "age": "2013-02-02",
-    "educationBoard": "Opportunity School",
-    "phoneNo": "7778877788",
-    "email": "7@gmail.com",
-    "registrationID": "Opportunity School_GRP_B_0001"
+    "childName": "Vivaan",
+    "parentName": "Sonia",
+    "dateOfBirth": "2018-08-20",
+    "educationBoard": "CBSE",
+    "phoneNo": "2000000032",
+    "email": "7@yahoo.com",
+    "registrationID": "CBSE_GRP_A_0007"
   },
   {
-    "childName": "2",
-    "parentName": "3",
-    "age": "2016-02-02",
-    "educationBoard": "Opportunity School",
-    "phoneNo": "6666766667",
-    "email": "ju@gmail.com",
-    "registrationID": "OPPR_GRP_A_0001"
+    "childName": "Riya",
+    "parentName": "Priya",
+    "dateOfBirth": "2012-10-05",
+    "educationBoard": "SSLC",
+    "phoneNo": "2000000033",
+    "email": "8@yahoo.com",
+    "registrationID": "SSLC_GRP_B_0008"
+  },
+  {
+    "childName": "Arjun",
+    "parentName": "Priya",
+    "dateOfBirth": "2008-07-05",
+    "educationBoard": "ICSE",
+    "phoneNo": "2000000043",
+    "email": "9@outlook.com",
+    "registrationID": "ICSE_GRP_C_0009"
+  },
+  {
+    "childName": "Vivaan",
+    "parentName": "Deepak",
+    "dateOfBirth": "2007-12-28",
+    "educationBoard": "CBSE",
+    "phoneNo": "2000000047",
+    "email": "10@yahoo.com",
+    "registrationID": "CBSE_GRP_C_0010"
+  },
+  {
+    "childName": "Aditya",
+    "parentName": "Lakshmi",
+    "dateOfBirth": "2013-07-20",
+    "educationBoard": "SSLC",
+    "phoneNo": "2000000054",
+    "email": "11@gmail.com",
+    "registrationID": "SSLC_GRP_B_0011"
+  },
+  {
+    "childName": "Riya",
+    "parentName": "Vijay",
+    "dateOfBirth": "2016-05-23",
+    "educationBoard": "SSLC",
+    "phoneNo": "2000000060",
+    "email": "12@gmail.com",
+    "registrationID": "SSLC_GRP_A_0012"
+  },
+  {
+    "childName": "Diya",
+    "parentName": "Suresh",
+    "dateOfBirth": "2012-06-26",
+    "educationBoard": "SSLC",
+    "phoneNo": "2000000066",
+    "email": "13@outlook.com",
+    "registrationID": "SSLC_GRP_B_0013"
+  },
+  {
+    "childName": "Aarav",
+    "parentName": "Anjali",
+    "dateOfBirth": "2019-05-05",
+    "educationBoard": "OPPR",
+    "phoneNo": "2000000073",
+    "email": "14@outlook.com",
+    "registrationID": "OPPR_GRP_A_0014"
+  },
+  {
+    "childName": "Kavya",
+    "parentName": "Kiran",
+    "dateOfBirth": "2017-02-27",
+    "educationBoard": "CBSE",
+    "phoneNo": "2000000083",
+    "email": "15@outlook.com",
+    "registrationID": "CBSE_GRP_A_0015"
+  },
+  {
+    "childName": "Diya",
+    "parentName": "Priya",
+    "dateOfBirth": "2011-10-27",
+    "educationBoard": "CBSE",
+    "phoneNo": "2000000084",
+    "email": "16@gmail.com",
+    "registrationID": "CBSE_GRP_C_0016"
+  },
+  {
+    "childName": "Sai",
+    "parentName": "Vijay",
+    "dateOfBirth": "2010-05-15",
+    "educationBoard": "CBSE",
+    "phoneNo": "2000000085",
+    "email": "17@yahoo.com",
+    "registrationID": "CBSE_GRP_C_0017"
+  },
+  {
+    "childName": "Kavya",
+    "parentName": "Rajesh",
+    "dateOfBirth": "2009-02-16",
+    "educationBoard": "ICSE",
+    "phoneNo": "2000000088",
+    "email": "18@yahoo.com",
+    "registrationID": "ICSE_GRP_C_0018"
+  },
+  {
+    "childName": "Diya",
+    "parentName": "Priya",
+    "dateOfBirth": "2018-02-02",
+    "educationBoard": "ICSE",
+    "phoneNo": "2000000090",
+    "email": "19@outlook.com",
+    "registrationID": "ICSE_GRP_A_0019"
+  },
+  {
+    "childName": "Vihaan",
+    "parentName": "Suresh",
+    "dateOfBirth": "2019-11-12",
+    "educationBoard": "ICSE",
+    "phoneNo": "2000000097",
+    "email": "20@outlook.com",
+    "registrationID": "ICSE_GRP_A_0020"
   }
 ]

@@ -62,7 +62,7 @@ app.post("/register", (req, res) => {
   const newRegistration = req.body;
 
   // Calculate the child's age and determine the group (GRP)
-  const age = calculateAge(newRegistration.age);
+  const age = calculateAge(newRegistration.dateOfBirth);
   const group = getGroupByAge(age);
 
   if (!group) {
