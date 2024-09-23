@@ -94,5 +94,23 @@
     "phoneNo": "8888999999",
     "email": "2@gmail.com",
     "registrationID": "SSLC_GRP_A_0006"
+  },
+  {
+    "childName": "ding",
+    "parentName": "dong",
+    "age": "2013-02-02",
+    "educationBoard": "Opportunity School",
+    "phoneNo": "7778877788",
+    "email": "7@gmail.com",
+    "registrationID": "Opportunity School_GRP_B_0001"
+  },
+  {
+    "childName": "2",
+    "parentName": "3",
+    "age": "2016-02-02",
+    "educationBoard": "Opportunity School",
+    "phoneNo": "6666766667",
+    "email": "ju@gmail.com",
+    "registrationID": "OPPR_GRP_A_0001"
   }
 ]

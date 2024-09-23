@@ -179,12 +179,23 @@ function getGroupByAge(age) {
 
 // Function to generate a registration ID
 function generateRegistrationID(educationBoard, group, registrations) {
+  // Create a map for the education board codes
+  const boardCodes = {
+    SSLC: "SSLC",
+    ICSE: "ICSE",
+    CBSE: "CBSE",
+    "Opportunity School": "OPPR", // Set OPPR for Opportunity School
+  };
+
+  // Get the board code or default to the full name if no code is defined
+  const boardCode = boardCodes[educationBoard] || educationBoard;
+
   // Filter the registrations by the education board to calculate the serial number
   const boardCount =
-    registrations.filter((reg) => reg.registrationID.startsWith(educationBoard))
+    registrations.filter((reg) => reg.registrationID.startsWith(boardCode))
       .length + 1;
   const serialNumber = String(boardCount).padStart(4, "0"); // e.g., 0001, 0002, etc.
-  return `${educationBoard}_${group}_${serialNumber}`;
+  return `${boardCode}_${group}_${serialNumber}`;
 }
 
 // Start the server
