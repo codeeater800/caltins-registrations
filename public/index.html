@@ -101,6 +101,8 @@
       }
     </style>
     <script>
+      let isReturningUser = false;
+
       async function confirmData(event) {
         event.preventDefault(); // Prevent form submission
 
@@ -108,10 +110,7 @@
           childName: document.getElementById("childName").value,
           parentName: document.getElementById("parentName").value,
           age: document.getElementById("age").value,
-          school: document.getElementById("school").value,
-          grade: document.getElementById("grade").value,
-          section: document.getElementById("section").value.toUpperCase() || "", // Convert section to uppercase
-          rollNo: document.getElementById("rollNo").value,
+          educationBoard: document.getElementById("educationBoard").value,
           phoneNo: document.getElementById("phoneNo").value,
           email: document.getElementById("email").value,
         };
@@ -125,7 +124,7 @@
           return; // Prevent form submission if age is invalid
         }
 
-        const confirmationText = `Child's Name: ${formData.childName}\nParent's Name: ${formData.parentName}\nAge: ${formData.age}\nSchool: ${formData.school}\nGrade: ${formData.grade}\nSection: ${formData.section}\nRoll No: ${formData.rollNo}\nPhone No: ${formData.phoneNo}\nEmail ID: ${formData.email}`;
+        const confirmationText = `Child's Name: ${formData.childName}\nParent's Name: ${formData.parentName}\nAge: ${formData.age}\nEducation Board: ${formData.educationBoard}\nPhone No: ${formData.phoneNo}\nEmail ID: ${formData.email}`;
 
         if (confirm(confirmationText)) {
           try {
@@ -141,11 +140,22 @@
 
             if (
               result ===
-              "Oops! It looks like this child has already been registered previously."
+              "Oops! It looks like this phone number has already been registered previously."
             ) {
-              alert(result);
-              document.querySelector("form").reset(); // Clear the form and let the user try again
-              return; // Do not redirect, stay on the form page
+              // Allow up to 3 registrations for the same phone number
+              alert(
+                "Mobile number was previously used to register. If you wish to register for another child with the same number, please proceed."
+              );
+              isReturningUser = true; // Track the returning user state
+              document.querySelector("form").reset(); // Clear the form except for phone number
+              retainFormData(formData); // Retain all fields except phone number
+              document.getElementById("phoneNo").focus(); // Focus on phone number field
+            } else if (
+              result === "Maximum registrations exceeded for this number."
+            ) {
+              alert(result); // Show max registration limit reached message
+              document.getElementById("phoneNo").value = ""; // Clear phone number field
+              document.getElementById("phoneNo").focus(); // Focus on phone number field
             } else {
               alert(result);
               showThankYouMessage(); // Redirect to thank you page only on successful registration
@@ -154,6 +164,18 @@
           } catch (error) {
             alert("Error submitting form.");
           }
+        }
+      }
+
+      function retainFormData(savedFormData) {
+        if (isReturningUser) {
+          document.getElementById("childName").value = savedFormData.childName;
+          document.getElementById("parentName").value =
+            savedFormData.parentName;
+          document.getElementById("age").value = savedFormData.age;
+          document.getElementById("educationBoard").value =
+            savedFormData.educationBoard;
+          document.getElementById("email").value = savedFormData.email;
         }
       }
 
@@ -190,23 +212,6 @@
         }
         return age;
       }
-
-      // On page load, refill all data except phone number
-      window.onload = () => {
-        const savedFormData = JSON.parse(localStorage.getItem("formData"));
-        if (savedFormData) {
-          document.getElementById("childName").value = savedFormData.childName;
-          document.getElementById("parentName").value =
-            savedFormData.parentName;
-          document.getElementById("age").value = savedFormData.age;
-          document.getElementById("school").value = savedFormData.school;
-          document.getElementById("grade").value = savedFormData.grade;
-          document.getElementById("section").value = savedFormData.section;
-          document.getElementById("rollNo").value = savedFormData.rollNo;
-          document.getElementById("email").value = savedFormData.email;
-          localStorage.removeItem("formData"); // Clear after refilling
-        }
-      };
 
       function showThankYouMessage() {
         document.querySelector(".container").style.display = "none"; // Hide the registration form
@@ -254,74 +259,14 @@
           />
         </div>
 
-        <label for="school">School:</label>
-        <select id="school" name="school" required>
-          <option value="">--Select School--</option>
-          <option value="St Charles High School">St Charles High School</option>
-          <option value="St Nirmala's High School">
-            St Nirmala's High School
-          </option>
-          <option value="St Paul's High School">St Paul's High School</option>
-          <option value="Florence High School">Florence High School</option>
-          <option value="St Francis High School">St Francis High School</option>
-          <option value="St Anthony's High School">
-            St Anthony's High School
-          </option>
-          <option value="St John's">St John's</option>
-          <option value="St Alphonsus Academy">St Alphonsus Academy</option>
-          <option value="St Alyosis High School">St Alyosis High School</option>
-          <option value="St Germains High School">
-            St Germains High School
-          </option>
-          <option value="Clarence High School">Clarence High School</option>
-          <option value="Cluny Convent High School">
-            Cluny Convent High School
-          </option>
-          <option value="BMS High School">BMS High School</option>
-          <option value="St Josephs Indian High School">
-            St Josephs Indian High School
-          </option>
-          <option value="St Josephs European High School">
-            St Josephs European High School
-          </option>
-          <option value="Sophia High School">Sophia High School</option>
-          <option value="Norte Dame School">Norte Dame School</option>
-          <option value="Balwins High School">Balwins High School</option>
-          <option value="Bishop Cottons Girls School">
-            Bishop Cottons Girls School
-          </option>
-          <option value="Bishop Cottons Boys School">
-            Bishop Cottons Boys School
-          </option>
-          <option value="Chitayana School Horumavu">
-            Chitayana School Horumavu
-          </option>
-          <option value="Mount Carmels High School">
-            Mount Carmels High School
-          </option>
+        <label for="educationBoard">Education Board:</label>
+        <select id="educationBoard" name="educationBoard" required>
+          <option value="">--Select Education Board--</option>
+          <option value="SSLC">SSLC</option>
+          <option value="ICSE">ICSE</option>
+          <option value="CBSE">CBSE</option>
+          <option value="Opportunity School">Opportunity School</option>
         </select>
-
-        <label for="grade">Grade:</label>
-        <div style="display: flex; align-items: center">
-          <input
-            type="text"
-            id="grade"
-            name="grade"
-            required
-            style="width: 45%"
-            placeholder="Grade"
-          />
-          <input
-            type="text"
-            id="section"
-            name="section"
-            style="width: 45%; margin-left: 10px"
-            placeholder="Section (optional)"
-          />
-        </div>
-
-        <label for="rollNo">Roll No:</label>
-        <input type="text" id="rollNo" name="rollNo" required />
 
         <label for="phoneNo">Phone No:</label>
         <input

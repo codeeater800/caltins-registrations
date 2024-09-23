@@ -61,11 +61,11 @@ app.get("/admin/download-registrations", (req, res) => {
 app.post("/register", (req, res) => {
   const newRegistration = req.body;
 
-  // Calculate the child's age and determine the category
+  // Calculate the child's age and determine the group (GRP)
   const age = calculateAge(newRegistration.age);
-  const category = getCategoryByAge(age);
+  const group = getGroupByAge(age);
 
-  if (!category) {
+  if (!group) {
     return res.status(400).send("Age does not fall within the valid range.");
   }
 
@@ -83,34 +83,56 @@ app.post("/register", (req, res) => {
       registrations = [];
     }
 
-    // Generate the registration ID
+    // Check how many times the phone number has been used
+    const phoneRegistrations = registrations.filter(
+      (reg) => reg.phoneNo === newRegistration.phoneNo
+    );
+
+    // Maximum registrations exceeded case
+    if (phoneRegistrations.length >= 3) {
+      return res
+        .status(400)
+        .send("Maximum registrations exceeded for this number.");
+    }
+
+    // If phone has been used less than 3 times, show the message but still accept the entry
+    if (phoneRegistrations.length > 0 && phoneRegistrations.length < 3) {
+      // Continue with registration and save the new entry
+      const registrationID = generateRegistrationID(
+        newRegistration.educationBoard,
+        group,
+        registrations
+      );
+
+      newRegistration.registrationID = registrationID;
+      registrations.push(newRegistration);
+
+      fs.writeFile(
+        jsonFilePath,
+        JSON.stringify(registrations, null, 2),
+        (err) => {
+          if (err) {
+            return res.status(500).send("Error writing data.");
+          }
+          res
+            .status(200)
+            .send(
+              "Mobile number was previously used to register. If you wish to register for another child with the same number, please proceed."
+            );
+        }
+      );
+      return; // Return after saving entry
+    }
+
+    // Normal case: New registration
     const registrationID = generateRegistrationID(
-      newRegistration.school,
-      category,
+      newRegistration.educationBoard,
+      group,
       registrations
     );
 
-    // Add the registration ID to the new registration object
     newRegistration.registrationID = registrationID;
 
-    // Check for duplicate based on school, grade, section, and roll number
-    const duplicateEntry = registrations.find(
-      (reg) =>
-        reg.school === newRegistration.school &&
-        reg.grade === newRegistration.grade &&
-        reg.section === newRegistration.section && // Handle empty section gracefully
-        reg.rollNo === newRegistration.rollNo
-    );
-
-    if (duplicateEntry) {
-      return res
-        .status(400)
-        .send(
-          "Oops! It looks like this child has already been registered previously."
-        );
-    }
-
-    // Add the new registration to the existing registrations
     registrations.push(newRegistration);
 
     // Write the updated data back to the file
@@ -147,48 +169,22 @@ function calculateAge(dateOfBirth) {
   return age;
 }
 
-// Function to determine the category based on age
-function getCategoryByAge(age) {
-  if (age >= 5 && age <= 8) return "CAT1";
-  if (age >= 9 && age <= 12) return "CAT2";
-  if (age >= 13 && age <= 16) return "CAT3";
+// Function to determine the group based on age
+function getGroupByAge(age) {
+  if (age >= 5 && age <= 8) return "GRP_A";
+  if (age >= 9 && age <= 12) return "GRP_B";
+  if (age >= 13 && age <= 16) return "GRP_C";
   return null;
 }
 
 // Function to generate a registration ID
-function generateRegistrationID(school, category, registrations) {
-  const schoolCodes = {
-    "St Charles High School": "SCH",
-    "St Nirmala's High School": "NHS",
-    "St Paul's High School": "PHS",
-    "Florence High School": "FHS",
-    "St Francis High School": "SFX",
-    "St Anthony's High School": "AHS",
-    "St John's": "SJS",
-    "St Alphonsus Academy": "SAA",
-    "St Alyosis High School": "AHS",
-    "St Germains High School": "GHC",
-    "Clarence High School": "CHS",
-    "Cluny Convent High School": "CCS",
-    "BMS High School": "BMS",
-    "St Josephs Indian High School": "SJI",
-    "St Josephs European High School": "SJE",
-    "Sophia High School": "SHS",
-    "Norte Dame School": "NDS",
-    "Balwins High School": "BHS",
-    "Bishop Cottons Girls School": "BCG",
-    "Bishop Cottons Boys School": "BGB",
-    "Chitayana School Horumavu": "CSH",
-    "Mount Carmels High School": "MCS",
-  };
-
-  const schoolCode = schoolCodes[school] || "XXX"; // Use "XXX" if school code is not found
-  const categoryCount =
-    registrations.filter(
-      (reg) => reg.registrationID && reg.registrationID.includes(category)
-    ).length + 1;
-  const serialNumber = String(categoryCount).padStart(4, "0"); // e.g., 0001, 0002, etc.
-  return `${schoolCode}${category}_${serialNumber}`;
+function generateRegistrationID(educationBoard, group, registrations) {
+  // Filter the registrations by the education board to calculate the serial number
+  const boardCount =
+    registrations.filter((reg) => reg.registrationID.startsWith(educationBoard))
+      .length + 1;
+  const serialNumber = String(boardCount).padStart(4, "0"); // e.g., 0001, 0002, etc.
+  return `${educationBoard}_${group}_${serialNumber}`;
 }
 
 // Start the server

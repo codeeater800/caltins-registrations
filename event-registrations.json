@@ -1,1 +1,98 @@
-[]
+[
+  {
+    "childName": "test1",
+    "parentName": "test1",
+    "age": "2018-02-02",
+    "school": "St Charles High School",
+    "grade": "1",
+    "section": "A",
+    "rollNo": "1",
+    "phoneNo": "9898989898",
+    "email": "test@gmail.com",
+    "registrationID": "SCHCAT1_0001"
+  },
+  {
+    "childName": "test2",
+    "parentName": "test2",
+    "age": "2019-02-02",
+    "school": "St Nirmala's High School",
+    "grade": "1",
+    "section": "A",
+    "rollNo": "1",
+    "phoneNo": "9898989899",
+    "email": "test@gmail.com",
+    "registrationID": "NHSCAT1_0002"
+  },
+  {
+    "childName": "test1",
+    "parentName": "test2",
+    "age": "2019-02-02",
+    "educationBoard": "SSLC",
+    "phoneNo": "8888999998",
+    "email": "test@gmail.com",
+    "registrationID": "SSLC_GRP_A_0001"
+  },
+  {
+    "childName": "test2",
+    "parentName": "test2",
+    "age": "2018-02-02",
+    "educationBoard": "ICSE",
+    "phoneNo": "9999888889",
+    "email": "test@gmail.com",
+    "registrationID": "ICSE_GRP_A_0001"
+  },
+  {
+    "childName": "s",
+    "parentName": "s",
+    "age": "2017-02-02",
+    "educationBoard": "SSLC",
+    "phoneNo": "8888999990",
+    "email": "f@gmail.com",
+    "registrationID": "SSLC_GRP_A_0002"
+  },
+  {
+    "childName": "bing",
+    "parentName": "bong",
+    "age": "2012-02-02",
+    "educationBoard": "SSLC",
+    "phoneNo": "8888999998",
+    "email": "test@gmail.com",
+    "registrationID": "SSLC_GRP_B_0003"
+  },
+  {
+    "childName": "7",
+    "parentName": "6",
+    "age": "2014-02-02",
+    "educationBoard": "SSLC",
+    "phoneNo": "8888999998",
+    "email": "h@gmail.com",
+    "registrationID": "SSLC_GRP_B_0004"
+  },
+  {
+    "childName": "7",
+    "parentName": "7",
+    "age": "2018-02-02",
+    "educationBoard": "SSLC",
+    "phoneNo": "8888999990",
+    "email": "3@gmail.com",
+    "registrationID": "SSLC_GRP_A_0005"
+  },
+  {
+    "childName": "ding",
+    "parentName": "dong",
+    "age": "2016-02-02",
+    "educationBoard": "ICSE",
+    "phoneNo": "8888999990",
+    "email": "2@gmail.com",
+    "registrationID": "ICSE_GRP_A_0002"
+  },
+  {
+    "childName": "2",
+    "parentName": "22",
+    "age": "2016-02-02",
+    "educationBoard": "SSLC",
+    "phoneNo": "8888999999",
+    "email": "2@gmail.com",
+    "registrationID": "SSLC_GRP_A_0006"
+  }
+]
