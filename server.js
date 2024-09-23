@@ -61,11 +61,11 @@ app.get("/admin/download-registrations", (req, res) => {
 app.post("/register", (req, res) => {
   const newRegistration = req.body;
 
-  // Calculate the child's age and determine the group (GRP)
+  // Calculate the child's age and determine the category (CAT)
   const age = calculateAge(newRegistration.dateOfBirth);
-  const group = getGroupByAge(age);
+  const category = getCategoryByAge(age);
 
-  if (!group) {
+  if (!category) {
     return res.status(400).send("Age does not fall within the valid range.");
   }
 
@@ -97,10 +97,9 @@ app.post("/register", (req, res) => {
 
     // If phone has been used less than 3 times, show the message but still accept the entry
     if (phoneRegistrations.length > 0 && phoneRegistrations.length < 3) {
-      // Continue with registration and save the new entry
       const registrationID = generateRegistrationID(
         newRegistration.educationBoard,
-        group,
+        category,
         registrations
       );
 
@@ -127,7 +126,7 @@ app.post("/register", (req, res) => {
     // Normal case: New registration
     const registrationID = generateRegistrationID(
       newRegistration.educationBoard,
-      group,
+      category,
       registrations
     );
 
@@ -169,33 +168,22 @@ function calculateAge(dateOfBirth) {
   return age;
 }
 
-// Function to determine the group based on age
-function getGroupByAge(age) {
-  if (age >= 5 && age <= 8) return "GRP_A";
-  if (age >= 9 && age <= 12) return "GRP_B";
-  if (age >= 13 && age <= 16) return "GRP_C";
+// Function to determine the category based on age
+function getCategoryByAge(age) {
+  if (age >= 5 && age <= 8) return "CAT1";
+  if (age >= 9 && age <= 12) return "CAT2";
+  if (age >= 13 && age <= 16) return "CAT3";
   return null;
 }
 
-// Function to generate a registration ID
-function generateRegistrationID(educationBoard, group, registrations) {
-  // Create a map for the education board codes
-  const boardCodes = {
-    SSLC: "SSLC",
-    ICSE: "ICSE",
-    CBSE: "CBSE",
-    "Opportunity School": "OPPR", // Set OPPR for Opportunity School
-  };
-
-  // Get the board code or default to the full name if no code is defined
-  const boardCode = boardCodes[educationBoard] || educationBoard;
-
-  // Filter the registrations by the education board to calculate the serial number
-  const boardCount =
-    registrations.filter((reg) => reg.registrationID.startsWith(boardCode))
+// Function to generate a registration ID based on category and education board
+function generateRegistrationID(educationBoard, category, registrations) {
+  // Filter the registrations by the category to calculate the serial number
+  const categoryCount =
+    registrations.filter((reg) => reg.registrationID.includes(category))
       .length + 1;
-  const serialNumber = String(boardCount).padStart(4, "0"); // e.g., 0001, 0002, etc.
-  return `${boardCode}_${group}_${serialNumber}`;
+  const serialNumber = String(categoryCount).padStart(3, "0"); // e.g., 001, 002, etc.
+  return `${educationBoard}_${category}_${serialNumber}`;
 }
 
 // Start the server

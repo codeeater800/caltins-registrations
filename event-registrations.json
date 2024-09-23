@@ -88,5 +88,59 @@
     "phoneNo": "2000000046",
     "email": "10@yahoo.com",
     "registrationID": "ICSE_GRP_B_0003"
+  },
+  {
+    "childName": "ding",
+    "parentName": "dong",
+    "dateOfBirth": "2016-02-02",
+    "educationBoard": "SSLC",
+    "phoneNo": "2889822876",
+    "email": "22@gmail.com",
+    "registrationID": "SSLC_CAT1_0003"
+  },
+  {
+    "childName": "22",
+    "parentName": "22",
+    "dateOfBirth": "2016-12-22",
+    "educationBoard": "CBSE",
+    "phoneNo": "8778782822",
+    "email": "uu@gmail.com",
+    "registrationID": "CBSE_CAT1_0005"
+  },
+  {
+    "childName": "ding",
+    "parentName": "dong",
+    "dateOfBirth": "2012-02-02",
+    "educationBoard": "SSLC",
+    "phoneNo": "1234567890",
+    "email": "2@gmail.com",
+    "registrationID": "SSLC_CAT2_001"
+  },
+  {
+    "childName": "22",
+    "parentName": "22",
+    "dateOfBirth": "2018-02-22",
+    "educationBoard": "ICSE",
+    "phoneNo": "1234567890",
+    "email": "s@gmail.com",
+    "registrationID": "ICSE_CAT1_003"
+  },
+  {
+    "childName": "2",
+    "parentName": "2",
+    "dateOfBirth": "2016-02-02",
+    "educationBoard": "CBSE",
+    "phoneNo": "1234567890",
+    "email": "k@gmail.com",
+    "registrationID": "CBSE_CAT1_004"
+  },
+  {
+    "childName": "12",
+    "parentName": "12",
+    "dateOfBirth": "2017-12-23",
+    "educationBoard": "CBSE",
+    "phoneNo": "1234567899",
+    "email": "88@gmail.com",
+    "registrationID": "CBSE_CAT1_005"
   }
 ]

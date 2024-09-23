@@ -107,14 +107,14 @@
         const formData = {
           childName: document.getElementById("childName").value,
           parentName: document.getElementById("parentName").value,
-          dateOfBirth: document.getElementById("dateOfBirth").value, // Renamed field
+          dateOfBirth: document.getElementById("dateOfBirth").value,
           educationBoard: document.getElementById("educationBoard").value,
           phoneNo: document.getElementById("phoneNo").value,
           email: document.getElementById("email").value,
         };
 
         // Validate age
-        const childAge = calculateAge(formData.dateOfBirth); // Correctly calculates age from date of birth
+        const childAge = calculateAge(formData.dateOfBirth);
         if (childAge < 5 || childAge > 16) {
           alert(
             "Age not within the valid range of 5 to 16 years. Please re-enter."
@@ -136,18 +136,26 @@
 
             const result = await response.text();
 
+            // Check if the maximum registration limit is exceeded
+            if (result === "Maximum registrations exceeded for this number.") {
+              alert(result);
+              document.getElementById("phoneNo").value = ""; // Clear phone number field
+              return; // Stay on the form page, do not redirect
+            }
+
+            // Check if the phone number has been used but less than 3 times
             if (
               result ===
-              "Oops! It looks like this phone number has already been registered previously."
+              "Mobile number was previously used to register. If you wish to register for another child with the same number, please proceed."
             ) {
               alert(result);
-              document.querySelector("form").reset(); // Clear the form and let the user try again
-              return; // Do not redirect, stay on the form page
-            } else {
-              alert(result);
-              showThankYouMessage(); // Redirect to thank you page only on successful registration
-              localStorage.clear(); // Clear localStorage on successful submission
+              return; // Stay on the form page, retain fields
             }
+
+            // If registration is successful
+            alert(result);
+            showThankYouMessage(); // Redirect to thank you page only on successful registration
+            localStorage.clear(); // Clear localStorage on successful submission
           } catch (error) {
             alert("Error submitting form.");
           }
@@ -157,7 +165,7 @@
       function displayAge() {
         const birthDate = new Date(
           document.getElementById("dateOfBirth").value
-        ); // Updated field name
+        );
         const today = new Date();
         let age = today.getFullYear() - birthDate.getFullYear();
         const monthDifference = today.getMonth() - birthDate.getMonth();
@@ -218,7 +226,6 @@
         <input type="text" id="parentName" name="parentName" required />
 
         <label for="dateOfBirth">Date of Birth:</label>
-        <!-- Updated field name -->
         <div style="display: flex; align-items: center">
           <input
             type="date"
